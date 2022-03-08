@@ -8,22 +8,13 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
+    var username: String!
+    var password: String!
+
+    @IBOutlet var greetingsLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        greetingsLabel.text! += username + "!"
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
