@@ -6,15 +6,25 @@
 //
 
 import UIKit
-private let username = "User"
-private let password = "password"
+
+
 
 class LogInViewController: UIViewController {
+    
+    private let gradient = CAGradientLayer()
+    private let username = "User"
+    private let password = "password"
+
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gradient.frame = view.bounds
+        gradient.colors = [(UIColor.init(named: "startColor")?.cgColor ?? UIColor.white.cgColor) as CGColor, UIColor.systemTeal.cgColor]
+        view.layer.insertSublayer(gradient, at: 0)
+        
         userNameTF.delegate = self
         passwordTF.delegate = self
     }
@@ -22,10 +32,12 @@ class LogInViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
+        passwordTF.text?.removeAll()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let greetingVC = segue.destination as? WelcomeViewController else { return }
+        greetingVC.modalPresentationStyle = .fullScreen
         greetingVC.username = userNameTF.text
         greetingVC.password = userNameTF.text
     }
@@ -51,10 +63,11 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
+        self.userNameTF.text?.removeAll()
+        self.passwordTF.text?.removeAll()
         guard let greetingVC = segue.source as? WelcomeViewController else { return }
         greetingVC.dismiss(animated: true) {
-            self.userNameTF.text?.removeAll()
-            self.passwordTF.text?.removeAll()
+            
         }
     }
 }
