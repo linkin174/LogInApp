@@ -19,6 +19,7 @@ class WelcomeViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet var greetingsLabel: UILabel!
+    @IBOutlet weak var emojiLabel: UILabel!
     
     // MARK: Life Cycle
     

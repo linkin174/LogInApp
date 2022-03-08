@@ -3,7 +3,6 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -116,7 +115,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Le-00-ebV">
-                                <rect key="frame" x="120.5" y="397" width="134.5" height="50"/>
+                                <rect key="frame" x="120.5" y="418.5" width="134.5" height="50"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Log Out">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="30"/>
@@ -126,11 +125,23 @@
                                     <segue destination="6RL-0G-bgu" kind="unwind" unwindAction="unwindWithSegue:" id="i6a-hx-DTF"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🤟🏼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFv-3t-kPP">
+                                <rect key="frame" x="137.5" y="278.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="TQ9-Jh-Got"/>
+                                    <constraint firstAttribute="width" secondItem="fFv-3t-kPP" secondAttribute="height" multiplier="1:1" id="sYA-xW-nxQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="95"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="exu-cF-FfE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="exu-cF-FfE" firstAttribute="bottom" secondItem="6Le-00-ebV" secondAttribute="bottom" constant="200" id="7ST-6c-fpG"/>
+                            <constraint firstItem="fFv-3t-kPP" firstAttribute="top" secondItem="mV9-Np-ftw" secondAttribute="bottom" constant="40" id="1vU-hP-SYu"/>
+                            <constraint firstItem="6Le-00-ebV" firstAttribute="top" secondItem="fFv-3t-kPP" secondAttribute="bottom" constant="40" id="BCf-nY-6Jc"/>
+                            <constraint firstItem="fFv-3t-kPP" firstAttribute="centerX" secondItem="U0x-wh-Tbf" secondAttribute="centerX" id="Hse-XH-0bn"/>
                             <constraint firstItem="mV9-Np-ftw" firstAttribute="top" secondItem="exu-cF-FfE" secondAttribute="top" constant="200" id="f6t-mt-peK"/>
                             <constraint firstItem="6Le-00-ebV" firstAttribute="centerX" secondItem="U0x-wh-Tbf" secondAttribute="centerX" id="hbD-pF-080"/>
                             <constraint firstItem="mV9-Np-ftw" firstAttribute="centerX" secondItem="U0x-wh-Tbf" secondAttribute="centerX" id="rEp-Wj-aE3"/>
@@ -138,6 +149,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="2du-cE-Q4k"/>
                     <connections>
+                        <outlet property="emojiLabel" destination="fFv-3t-kPP" id="j5s-OR-Dsd"/>
                         <outlet property="greetingsLabel" destination="mV9-Np-ftw" id="bI4-L4-xqH"/>
                     </connections>
                 </viewController>
