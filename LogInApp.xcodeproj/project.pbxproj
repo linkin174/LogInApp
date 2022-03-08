@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		70C19ADB27D70CA900507C4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C19ADA27D70CA900507C4C /* AppDelegate.swift */; };
 		70C19ADD27D70CA900507C4C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C19ADC27D70CA900507C4C /* SceneDelegate.swift */; };
-		70C19ADF27D70CA900507C4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C19ADE27D70CA900507C4C /* ViewController.swift */; };
+		70C19ADF27D70CA900507C4C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C19ADE27D70CA900507C4C /* LogInViewController.swift */; };
 		70C19AE227D70CA900507C4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C19AE027D70CA900507C4C /* Main.storyboard */; };
 		70C19AE427D70CAA00507C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70C19AE327D70CAA00507C4C /* Assets.xcassets */; };
 		70C19AE727D70CAA00507C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C19AE527D70CAA00507C4C /* LaunchScreen.storyboard */; };
+		70C19AEF27D70D0C00507C4C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C19AEE27D70D0C00507C4C /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		70C19AD727D70CA900507C4C /* LogInApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogInApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C19ADA27D70CA900507C4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70C19ADC27D70CA900507C4C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		70C19ADE27D70CA900507C4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		70C19ADE27D70CA900507C4C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		70C19AE127D70CA900507C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		70C19AE327D70CAA00507C4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70C19AE627D70CAA00507C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70C19AE827D70CAA00507C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70C19AEE27D70D0C00507C4C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +60,8 @@
 			children = (
 				70C19ADA27D70CA900507C4C /* AppDelegate.swift */,
 				70C19ADC27D70CA900507C4C /* SceneDelegate.swift */,
-				70C19ADE27D70CA900507C4C /* ViewController.swift */,
+				70C19ADE27D70CA900507C4C /* LogInViewController.swift */,
+				70C19AEE27D70D0C00507C4C /* WelcomeViewController.swift */,
 				70C19AE027D70CA900507C4C /* Main.storyboard */,
 				70C19AE327D70CAA00507C4C /* Assets.xcassets */,
 				70C19AE527D70CAA00507C4C /* LaunchScreen.storyboard */,
@@ -138,7 +141,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70C19ADF27D70CA900507C4C /* ViewController.swift in Sources */,
+				70C19ADF27D70CA900507C4C /* LogInViewController.swift in Sources */,
+				70C19AEF27D70D0C00507C4C /* WelcomeViewController.swift in Sources */,
 				70C19ADB27D70CA900507C4C /* AppDelegate.swift in Sources */,
 				70C19ADD27D70CA900507C4C /* SceneDelegate.swift in Sources */,
 			);
@@ -306,7 +310,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -334,7 +338,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
