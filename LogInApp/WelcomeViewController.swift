@@ -8,27 +8,26 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-    
-    //MARK: Public Properties
+    // MARK: Public Properties
     
     var username: String!
-    var password: String!
     
-    //MARK: Private Properties
+    // MARK: Private Properties
+
     private let gradient = CAGradientLayer()
     
-    //MARK: IBOutlets
+    // MARK: IBOutlets
     
     @IBOutlet var greetingsLabel: UILabel!
     
-    //MARK: Life Cycle
+    // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        greetingsLabel.text! += username + "!"
+        greetingsLabel.text! += " " + username + "!"
         gradient.frame = view.bounds
-        gradient.colors = [(UIColor.init(named: "someColor")?.cgColor ?? UIColor.white.cgColor) as CGColor, UIColor.systemTeal.cgColor]
+        gradient.colors = [UIColor(named: "someColor")?.cgColor ?? UIColor.white.cgColor,
+                           UIColor.systemTeal.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
     }
 }

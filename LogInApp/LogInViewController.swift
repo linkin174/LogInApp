@@ -24,13 +24,13 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userNameTF.delegate = self
+        passwordTF.delegate = self
+        
         gradient.frame = view.bounds
         gradient.colors = [UIColor(named: "someColor")?.cgColor ?? UIColor.white.cgColor,
                            UIColor.systemTeal.cgColor]
         view.layer.insertSublayer(gradient, at: 0)
-
-        userNameTF.delegate = self
-        passwordTF.delegate = self
     }
     
     // MARK: Override Methods
@@ -46,7 +46,6 @@ class LogInViewController: UIViewController {
         guard let greetingVC = segue.destination as? WelcomeViewController else { return }
         greetingVC.modalPresentationStyle = .fullScreen
         greetingVC.username = userNameTF.text
-        greetingVC.password = userNameTF.text
     }
     
     // MARK: IBActions
@@ -62,8 +61,7 @@ class LogInViewController: UIViewController {
             showAlert(title: "WARNING", message: "Enter user name", actionTitle: "ОК")
         } else if passwordTF.text?.isEmpty == true {
             showAlert(title: "WARNING", message: "Enter password", actionTitle: "ОК")
-        } else if userNameTF.text != username,
-                  passwordTF.text != password
+        } else if userNameTF.text != username || passwordTF.text != password
         {
             showAlert(title: "ERROR", message: "Wrong user name or password", actionTitle: "Что ж")
             passwordTF.text?.removeAll()
