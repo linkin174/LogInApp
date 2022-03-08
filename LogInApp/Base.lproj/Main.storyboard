@@ -149,7 +149,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="2du-cE-Q4k"/>
                     <connections>
-                        <outlet property="emojiLabel" destination="fFv-3t-kPP" id="j5s-OR-Dsd"/>
                         <outlet property="greetingsLabel" destination="mV9-Np-ftw" id="bI4-L4-xqH"/>
                     </connections>
                 </viewController>

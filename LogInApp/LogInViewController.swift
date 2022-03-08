@@ -7,7 +7,8 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController{
+    
     // MARK: IB Outlets
 
     @IBOutlet var userNameTF: UITextField!
@@ -15,7 +16,6 @@ class LogInViewController: UIViewController {
     
     // MARK: Private properties
 
-    private let gradient = CAGradientLayer()
     private let username = "User"
     private let password = "password"
     
@@ -27,10 +27,7 @@ class LogInViewController: UIViewController {
         userNameTF.delegate = self
         passwordTF.delegate = self
         
-        gradient.frame = view.bounds
-        gradient.colors = [UIColor(named: "someColor")?.cgColor ?? UIColor.white.cgColor,
-                           UIColor.systemTeal.cgColor]
-        view.layer.insertSublayer(gradient, at: 0)
+        setGradientBackGround(colors: [UIColor.systemMint, UIColor.cyan, UIColor.blue])
     }
     
     // MARK: Override Methods
@@ -44,7 +41,6 @@ class LogInViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let greetingVC = segue.destination as? WelcomeViewController else { return }
-        greetingVC.modalPresentationStyle = .fullScreen
         greetingVC.username = userNameTF.text
     }
     
@@ -57,16 +53,11 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func logInButtonPressed() {
-        if userNameTF.text?.isEmpty == true {
-            showAlert(title: "WARNING", message: "Enter user name", actionTitle: "ОК")
-        } else if passwordTF.text?.isEmpty == true {
-            showAlert(title: "WARNING", message: "Enter password", actionTitle: "ОК")
-        } else if userNameTF.text != username || passwordTF.text != password
-        {
+       if userNameTF.text == username && passwordTF.text == password {
+           performSegue(withIdentifier: "", sender: UIButton())
+        } else {
             showAlert(title: "ERROR", message: "Wrong user name or password", actionTitle: "Что ж")
             passwordTF.text?.removeAll()
-        } else {
-            performSegue(withIdentifier: "", sender: UIButton())
         }
     }
     
@@ -90,8 +81,7 @@ class LogInViewController: UIViewController {
 
 extension LogInViewController: UITextFieldDelegate {
     internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let nextTag = textField.tag + 1
-        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+        if let nextResponder = textField.superview?.viewWithTag(textField.tag + 1) {
             nextResponder.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
@@ -99,5 +89,12 @@ extension LogInViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    private func setGradientBackGround(colors: [UIColor]) {
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = colors.map({ $0.cgColor })
+        view.layer.insertSublayer(gradient, at: 0)
+    }
 }
- 
+
