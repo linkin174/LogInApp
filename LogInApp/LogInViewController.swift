@@ -41,6 +41,8 @@ class LogInViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let greetingVC = segue.destination as? WelcomeViewController else { return }
         greetingVC.username = userNameTF.text
+        greetingVC.modalPresentationStyle = .fullScreen
+        greetingVC.modalTransitionStyle = .flipHorizontal
     }
 
     // MARK: IBActions
