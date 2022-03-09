@@ -35,11 +35,14 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iq-WU-Wew">
-                                <rect key="frame" x="138" y="332" width="114.33333333333331" height="52.333333333333314"/>
+                                <rect key="frame" x="146" y="352" width="98" height="45.333333333333314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7iq-WU-Wew" secondAttribute="height" multiplier="97:45" id="YPn-tL-t7e"/>
+                                </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Log In"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Log In" titleAlignment="center">
-                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="26"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" name="AccentColor"/>
                                 </buttonConfiguration>
@@ -79,12 +82,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7iq-WU-Wew" firstAttribute="top" secondItem="IV0-GT-MCi" secondAttribute="bottom" constant="40" id="2by-of-lyE"/>
-                            <constraint firstItem="7iq-WU-Wew" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.293162" id="9na-lG-IEb"/>
+                            <constraint firstItem="7iq-WU-Wew" firstAttribute="top" secondItem="IV0-GT-MCi" secondAttribute="bottom" constant="60" id="2by-of-lyE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JKj-Fa-LHI" secondAttribute="trailing" constant="16" id="Dc7-QJ-VH5"/>
                             <constraint firstItem="JKj-Fa-LHI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="JwM-CP-hC2"/>
                             <constraint firstItem="IV0-GT-MCi" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="g1D-yD-kcy"/>
-                            <constraint firstItem="7iq-WU-Wew" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0620063" id="i7g-jd-br2"/>
                             <constraint firstItem="7iq-WU-Wew" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lVE-09-Qeb"/>
                             <constraint firstItem="IV0-GT-MCi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r0a-k5-IbH"/>
                             <constraint firstAttribute="bottom" secondItem="JKj-Fa-LHI" secondAttribute="bottom" constant="54" id="t0z-Fs-dKI" customClass="DeviceLayoutConstraint" customModule="DeviceLayout"/>
@@ -92,9 +93,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="logInButton" destination="7iq-WU-Wew" id="ymf-Jb-oYA"/>
+                        <outlet property="loginButtonSpacingOutlet" destination="2by-of-lyE" id="C9b-iH-4V5"/>
                         <outlet property="passwordTF" destination="TyN-cK-L3c" id="6rz-6A-Imi"/>
                         <outlet property="reminderStackBottomConstraint" destination="t0z-Fs-dKI" id="YjJ-UD-iF7"/>
+                        <outlet property="topSpacingOutlet" destination="zX1-4l-1yL" id="m3i-eg-xk5"/>
                         <outlet property="userNameTF" destination="FJZ-YJ-AXg" id="as1-k5-RTC"/>
                     </connections>
                 </viewController>
