@@ -23,7 +23,7 @@ class LogInViewController: UIViewController {
     private let username = "User"
     private let password = "password"
     private var screenSizeY: CGFloat = 0
-    private var startPosition = true
+    private var defaultPosition = true
     
     // MARK: Life Cycle
 
@@ -114,15 +114,15 @@ class LogInViewController: UIViewController {
         let info = notification.userInfo!
         let keyboardframe: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         
-        if screenSizeY <= 568  && startPosition == true {
+        if screenSizeY <= 568  && defaultPosition == true {
             loginButtonSpacingOutlet.constant /= 2
             topSpacingOutlet.constant -= keyboardframe.size.height / 2
-        } else if screenSizeY > 568  && startPosition == true {
+        } else if screenSizeY > 568  && defaultPosition == true {
 //            loginButtonSpacingOutlet.constant /= 0.5
             topSpacingOutlet.constant -= keyboardframe.size.height / 4
         }
         reminderStackBottomConstraint.constant = keyboardframe.size.height + 20
-        startPosition = false
+        defaultPosition = false
         UIView.animate(withDuration: 0.4) {
             self.view.layoutIfNeeded()
         }
@@ -132,7 +132,7 @@ class LogInViewController: UIViewController {
         reminderStackBottomConstraint.constant = 54
         topSpacingOutlet.constant = 150
         loginButtonSpacingOutlet.constant = 60
-        startPosition = true
+        defaultPosition = true
         UIView.animate(withDuration: 0.4) {
             self.view.layoutIfNeeded()
         }
