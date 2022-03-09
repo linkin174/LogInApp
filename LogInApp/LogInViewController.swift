@@ -39,7 +39,7 @@ class LogInViewController: UIViewController {
     // MARK: Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let greetingVC = segue.destination as? WelcomeViewController else { return }
+        let greetingVC = segue.destination as! WelcomeViewController
         greetingVC.username = userNameTF.text
         greetingVC.modalPresentationStyle = .fullScreen
         greetingVC.modalTransitionStyle = .flipHorizontal
@@ -55,7 +55,7 @@ class LogInViewController: UIViewController {
 
     @IBAction func logInButtonPressed() {
         if userNameTF.text == username, passwordTF.text == password {
-            performSegue(withIdentifier: "", sender: UIButton())
+            performSegue(withIdentifier: "toWelcomeScreen", sender: nil)
         } else {
             showAlert(title: "ERROR", message: "Wrong user name or password", actionTitle: "Что ж")
             passwordTF.text?.removeAll()
@@ -88,11 +88,10 @@ class LogInViewController: UIViewController {
 // MARK: Extensions
 
 extension LogInViewController: UITextFieldDelegate {
-    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let nextResponder = textField.superview?.viewWithTag(textField.tag + 1) {
-            nextResponder.becomeFirstResponder()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userNameTF {                                        //Проверка какое поле выбрано
+            passwordTF.becomeFirstResponder()                               //Выбор следующего поля
         } else {
-            textField.resignFirstResponder()
             logInButtonPressed()
         }
         return true

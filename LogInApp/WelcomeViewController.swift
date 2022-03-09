@@ -8,13 +8,14 @@
 import UIKit
 
 class WelcomeViewController: UIViewController {
-    // MARK: Public Properties
-
-    var username: String!
-
+  
     // MARK: IBOutlets
 
     @IBOutlet var greetingsLabel: UILabel!
+    
+    // MARK: Public Properties
+
+    var username: String!
 
     // MARK: Life Cycle
 
