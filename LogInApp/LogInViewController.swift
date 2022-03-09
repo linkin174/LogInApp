@@ -7,24 +7,27 @@
 
 import UIKit
 
+
 class LogInViewController: UIViewController {
     // MARK: IB Outlets
 
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
 
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var reminderStackConstraint: NSLayoutConstraint!
+    @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var reminderStackBottomConstraint: NSLayoutConstraint!
     // MARK: Private properties
 
     private let username = "User"
     private let password = "password"
-    private let reminderStackViewConstraints = [NSLayoutConstraint]()
+    private var reminderStackViewConstraints =  [NSLayoutConstraint]()
 
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logInButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWasShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
@@ -32,7 +35,7 @@ class LogInViewController: UIViewController {
         
         userNameTF.delegate = self
         passwordTF.delegate = self
-
+        
         setGradientBackGround(colors: [UIColor.systemMint, UIColor.cyan, UIColor.blue])
     }
 
@@ -92,19 +95,16 @@ class LogInViewController: UIViewController {
     @objc private func keyBoardWasShow(notification: NSNotification) {
         let info = notification.userInfo!
         let keyboardframe: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        self.reminderStackConstraint.constant = keyboardframe.size.height
-
-        UIView.animate(withDuration: 0.2) { () in
+        
+        reminderStackBottomConstraint.constant = keyboardframe.size.height + 20
+        UIView.animate(withDuration: 0.4) {
             self.view.layoutIfNeeded()
         }
     }
 
     @objc private func keyboardWasHidden(notification: NSNotification) {
-        var contstaint = NSLayoutConstraint()
-        contstaint = self.stackView.constraints[0]
-        print(contstaint)
-        self.reminderStackConstraint.constant = 20
-        UIView.animate(withDuration: 0.2) {
+        reminderStackBottomConstraint.constant = 54
+        UIView.animate(withDuration: 0.4) {
             self.view.layoutIfNeeded()
         }
     }
