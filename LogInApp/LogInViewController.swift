@@ -13,16 +13,23 @@ class LogInViewController: UIViewController {
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
 
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var reminderStackConstraint: NSLayoutConstraint!
     // MARK: Private properties
 
     private let username = "User"
     private let password = "password"
+    private let reminderStackViewConstraints = [NSLayoutConstraint]()
 
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWasShow(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         userNameTF.delegate = self
         passwordTF.delegate = self
 
@@ -65,8 +72,6 @@ class LogInViewController: UIViewController {
     @IBAction func unwind(segue: UIStoryboardSegue) {
         userNameTF.text?.removeAll()
         passwordTF.text?.removeAll()
-        guard let greetingVC = segue.source as? WelcomeViewController else { return }
-        greetingVC.dismiss(animated: true) {}
     }
 
     // MARK: Private Methods
@@ -83,6 +88,26 @@ class LogInViewController: UIViewController {
         gradient.colors = colors.map { $0.cgColor }
         view.layer.insertSublayer(gradient, at: 0)
     }
+    
+    @objc private func keyBoardWasShow(notification: NSNotification) {
+        let info = notification.userInfo!
+        let keyboardframe: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        self.reminderStackConstraint.constant = keyboardframe.size.height
+
+        UIView.animate(withDuration: 0.2) { () in
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc private func keyboardWasHidden(notification: NSNotification) {
+        var contstaint = NSLayoutConstraint()
+        contstaint = self.stackView.constraints[0]
+        print(contstaint)
+        self.reminderStackConstraint.constant = 20
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
 // MARK: Extensions
@@ -90,10 +115,11 @@ class LogInViewController: UIViewController {
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == userNameTF {                                        //Проверка какое поле выбрано
-            passwordTF.becomeFirstResponder()                               //Выбор следующего поля
+           passwordTF.becomeFirstResponder()                               //Выбор следующего поля
         } else {
             logInButtonPressed()
         }
         return true
     }
+    
 }

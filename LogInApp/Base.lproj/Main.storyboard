@@ -52,7 +52,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JKj-Fa-LHI">
-                                <rect key="frame" x="16" y="380.5" width="343" height="33.5"/>
+                                <rect key="frame" x="16" y="593.5" width="343" height="33.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DP9-f4-szl">
                                         <rect key="frame" x="0.0" y="0.0" width="167.5" height="33.5"/>
@@ -84,8 +84,8 @@
                         <constraints>
                             <constraint firstItem="7iq-WU-Wew" firstAttribute="top" secondItem="IV0-GT-MCi" secondAttribute="bottom" constant="40" id="2by-of-lyE"/>
                             <constraint firstAttribute="trailing" secondItem="JKj-Fa-LHI" secondAttribute="trailing" constant="16" id="CFg-SA-SkT"/>
-                            <constraint firstItem="JKj-Fa-LHI" firstAttribute="top" secondItem="7iq-WU-Wew" secondAttribute="bottom" constant="40" id="KVT-22-5ik"/>
                             <constraint firstItem="JKj-Fa-LHI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="S5L-ev-7bf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JKj-Fa-LHI" secondAttribute="bottom" constant="40" id="dNL-IE-eQs"/>
                             <constraint firstItem="IV0-GT-MCi" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="g1D-yD-kcy"/>
                             <constraint firstItem="7iq-WU-Wew" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lVE-09-Qeb"/>
                             <constraint firstItem="IV0-GT-MCi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="r0a-k5-IbH"/>
@@ -95,6 +95,8 @@
                     </view>
                     <connections>
                         <outlet property="passwordTF" destination="TyN-cK-L3c" id="6rz-6A-Imi"/>
+                        <outlet property="reminderStackConstraint" destination="dNL-IE-eQs" id="9oa-bR-FPx"/>
+                        <outlet property="stackView" destination="JKj-Fa-LHI" id="skC-so-8Hw"/>
                         <outlet property="userNameTF" destination="FJZ-YJ-AXg" id="as1-k5-RTC"/>
                     </connections>
                 </viewController>
