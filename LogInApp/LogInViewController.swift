@@ -7,41 +7,37 @@
 
 import UIKit
 
-
 class LogInViewController: UIViewController {
     // MARK: IB Outlets
 
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
-    @IBOutlet weak var topSpacingOutlet: NSLayoutConstraint!
-    @IBOutlet weak var loginButtonSpacingOutlet: NSLayoutConstraint!
-    
+    //Constraints
+    @IBOutlet var topSpacingConstraint: NSLayoutConstraint!
+    @IBOutlet var loginButtonSpacingConstraint: NSLayoutConstraint!
 
-    @IBOutlet weak var reminderStackBottomConstraint: NSLayoutConstraint!
     // MARK: Private properties
 
     private let username = "User"
     private let password = "password"
-    private var screenSizeY: CGFloat = 0
-    private var defaultPosition = true
-    
+
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerKBNotifications()
         
+        registerKBNotifications()
+
         userNameTF.delegate = self
         passwordTF.delegate = self
-        
-        screenSizeY = view.bounds.maxY
+
         setGradientBackGround(colors: [UIColor.systemMint, UIColor.cyan, UIColor.blue])
     }
 
     deinit {
-        removeKNBotifications()
+        removeKBNotifications()
     }
-    
+
     // MARK: Override Methods
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,60 +78,18 @@ class LogInViewController: UIViewController {
 
     // MARK: Private Methods
 
-    private func showAlert(title: String, message: String, actionTitle: String) {
+    func showAlert(title: String, message: String, actionTitle: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .cancel)
         alert.addAction(action)
         present(alert, animated: true)
     }
 
-    private func setGradientBackGround(colors: [UIColor]) {
+    func setGradientBackGround(colors: [UIColor]) {
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
         gradient.colors = colors.map { $0.cgColor }
         view.layer.insertSublayer(gradient, at: 0)
-    }
-    
-    private func registerKBNotifications() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWasShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    private func removeKNBotifications() {
-        
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification , object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification , object: nil)
-    }
-    
-    @objc private func keyBoardWasShow(notification: NSNotification) {
-        
-        let info = notification.userInfo!
-        let keyboardframe: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        
-        if screenSizeY <= 568  && defaultPosition == true {
-            loginButtonSpacingOutlet.constant /= 2
-            topSpacingOutlet.constant -= keyboardframe.size.height / 2
-        } else if screenSizeY > 568  && defaultPosition == true {
-//            loginButtonSpacingOutlet.constant /= 0.5
-            topSpacingOutlet.constant -= keyboardframe.size.height / 4
-        }
-        reminderStackBottomConstraint.constant = keyboardframe.size.height + 20
-        defaultPosition = false
-        UIView.animate(withDuration: 0.4) {
-            self.view.layoutIfNeeded()
-        }
-    }
-
-    @objc private func keyboardWasHidden(notification: NSNotification) {
-        reminderStackBottomConstraint.constant = 54
-        topSpacingOutlet.constant = 150
-        loginButtonSpacingOutlet.constant = 60
-        defaultPosition = true
-        UIView.animate(withDuration: 0.4) {
-            self.view.layoutIfNeeded()
-        }
     }
 }
 
@@ -143,12 +97,50 @@ class LogInViewController: UIViewController {
 
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == userNameTF {                                        //Проверка какое поле выбрано
-           passwordTF.becomeFirstResponder()                               //Выбор следующего поля
+        if textField == userNameTF { // Проверка какое поле выбрано
+            passwordTF.becomeFirstResponder() // Выбор следующего поля
         } else {
             logInButtonPressed()
         }
         return true
     }
+
+    func registerKBNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    func removeKBNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyBoardWasShown(notification: NSNotification) {
+        let info = notification.userInfo!
+        let keyboardframe: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let offset = keyboardframe.size.height
+        
+        if view.bounds.maxY <= 568 {
+            loginButtonSpacingConstraint.constant = offset / 8
+            topSpacingConstraint.constant = offset + 40
+            view.frame.origin = CGPoint(x: 0, y: -offset)
+        } else {
+            topSpacingConstraint.constant = offset * 1.6
+            view.frame.origin = CGPoint(x: 0, y: -offset)
+        }
+
+        UIView.animate(withDuration: 0.4) {
+            self.view.layoutIfNeeded()
+        }
+    }
     
+    @objc func keyboardWasHidden(notification: NSNotification) {
+        topSpacingConstraint.constant = 150
+        loginButtonSpacingConstraint.constant = 60
+        view.frame.origin = CGPoint(x: 0, y: 0)
+        UIView.animate(withDuration: 0.4) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
