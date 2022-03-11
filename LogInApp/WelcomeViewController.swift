@@ -21,16 +21,9 @@ class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setGradientBackGround(colors: [UIColor.systemMint, UIColor.cyan, UIColor.blue])
+        
+        view.setGradientBackGround(colors: [UIColor.systemMint, UIColor.blue])
         greetingsLabel.text! += " " + username + "!"
     }
-
-    // MARK: Private methods
-
-    private func setGradientBackGround(colors: [UIColor]) {
-        let gradient = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = colors.map { $0.cgColor }
-        view.layer.insertSublayer(gradient, at: 0)
-    }
 }
+
