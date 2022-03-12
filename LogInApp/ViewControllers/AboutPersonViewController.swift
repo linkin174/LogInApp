@@ -11,27 +11,26 @@ class AboutPersonViewController: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var surnameLabel: UILabel!
-    @IBOutlet weak var sexLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var companyLabel: UILabel!
     
-    var name: String!
-    var surname: String!
-    var age: Int!
-    var sex: User.Sex!
-    var personImage: String!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel.text = name
-        surnameLabel.text = surname
-        ageLabel.text = String(age)
-        sexLabel.text = sex.rawValue
-        // Do any additional setup after loading the view.
+        nameLabel.text = user.person.name
+        surnameLabel.text = user.person.surname
+        ageLabel.text = String(user.person.age)
+        cityLabel.text = user.person.city
+        companyLabel.text = user.person.company
+        view.setGradientBackGround(colors: [UIColor.systemMint, UIColor.blue])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let moreInfoVC = segue.destination as! MoreInfoViewController
-        moreInfoVC.photo = personImage
+        moreInfoVC.aboutPerson = self.user.person.description
+        moreInfoVC.photo = self.user.person.photo
        }
     }
 

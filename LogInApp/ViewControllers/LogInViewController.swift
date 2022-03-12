@@ -14,77 +14,63 @@ class LogInViewController: UIViewController {
     @IBOutlet var passwordTF: UITextField!
 
     // MARK: Private properties
-
-    private let username = "User"
-    private let password = "password"
-    private var userIndex = 0
-
+    private let user = User.createUser()
+    
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.setGradientBackGround(colors: [UIColor.systemMint, UIColor.blue])
+        view.setGradientBackGround(colors: [UIColor.gray, UIColor.white])
         userNameTF.delegate = self
         passwordTF.delegate = self
     }
+
 
     // MARK: Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let tabBarController = segue.destination as! UITabBarController
         for viewController in tabBarController.viewControllers! {
-            tabBarController.tabBar.items![0].title = "Home"
-            tabBarController.tabBar.items![1].title = "About"
             if let welcomeVC = viewController as? WelcomeViewController {
-                welcomeVC.username = User.users[userIndex].person.name
+                welcomeVC.personName = user.person.name
             } else if let navigationVC = viewController as? UINavigationController {
                 let aboutVC = navigationVC.topViewController as! AboutPersonViewController
-                aboutVC.age = User.users[userIndex].person.age
-                aboutVC.name = User.users[userIndex].person.name
-                aboutVC.surname = User.users[userIndex].person.surname
-                aboutVC.sex = User.users[userIndex].person.sex
-                aboutVC.personImage = User.users[userIndex].person.photo
+                aboutVC.user = user
             }
         }
-//        guard let greetingVC = segue.destination as? WelcomeViewController else { return }
-//        greetingVC.username = username
-    }
+}
 
     // MARK: IBActions
 
     @IBAction func reminderButtonsPressed(_ sender: UIButton) {
         sender.tag == 0
             ? showAlert(title: "Your user name is",
-                        message: username,
+                        message: "\(self.user.login)",
                         actionTitle: "Understand")
             : showAlert(title: "Your password is",
-                        message: password,
+                        message: "\(self.user.password)",
                         actionTitle: "Cool")
     }
 
     @IBAction func logInButtonPressed() {
-        var loginState = false
-        for (index, user) in User.users.enumerated() {
-            if user.login == userNameTF.text!, user.paswword == passwordTF.text! {
-                userIndex = index
-                loginState = true
+        if userNameTF.text == user.login && passwordTF.text == user.password{
+                performSegue(withIdentifier: "toWelcomeScreen", sender: UIButton.self)
+            } else {
+                showAlert(title: "ERROR",
+                          message: "Wrong user name or password",
+                          actionTitle: "Что ж")
+                
             }
         }
-        if loginState == true {
-            performSegue(withIdentifier: "toWelcomeScreen", sender: UIButton.self)
-        } else {
-            showAlert(title: "ERROR",
-                      message: "Wrong user name or password",
-                      actionTitle: "Что ж")
-        }
-    }
-
-    func unwind(segue: UIStoryboardSegue) {
+    
+    @IBAction func unwind(segue: UIStoryboardSegue) {
         userNameTF.text?.removeAll()
         passwordTF.text?.removeAll()
     }
 }
+
+
 
 // MARK: Extensions
 
@@ -123,3 +109,4 @@ extension LogInViewController: UITextFieldDelegate {
         view.endEditing(true)
     }
 }
+

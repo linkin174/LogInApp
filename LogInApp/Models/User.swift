@@ -6,59 +6,33 @@
 //
 
 import Foundation
-import UIKit
 
 struct User {
     let login: String
-    let paswword: String
+    let password: String
     let person: Person
-    static let users = [
-        User(login: "tim", paswword: "123", person: Person(name: "Tim", surname: "Cook", age: 61, sex: .male, job: "Apple Inc.", hobby: .painting, photo: "TimCook")),
-                    User(login: "phil", paswword: "000", person: Person(name: "Phil", surname: "Schiller", age: 61, sex: .male, job: "Apple Inc", hobby: .singing, photo: "Phil")),
-                         User(login: "jason", paswword: "321", person: Person(name: "Jason", surname: "Stetham", age: 52, sex: .male, job: "WB", hobby: .singing, photo: "Phil"))
-    ]
     
-    func createUsers() -> [User] {
-        [
-            User(login: "tim", paswword: "123", person: Person(name: "Tim", surname: "Cook", age: 61, sex: .male, job: "Apple Inc.", hobby: .painting, photo: "TimCook")),
-            User(login: "phil", paswword: "000", person: Person(name: "Phil", surname: "Schiller", age: 61, sex: .male, job: "Apple Inc", hobby: .singing, photo: "phil")),
-            User(login: "jason", paswword: "321", person: Person(name: "Jason", surname: "Stetham", age: 52, sex: .male, job: "WB", hobby: .singing, photo: "phil"))
-        ]
+    static func createUser() -> User {
+        User(login: "alex", password: "123", person: Person.createPerson())
     }
-
+}
 
 struct Person {
     let name: String
     let surname: String
     let age: Int
-    let sex: Sex
-    let job: String
-    let hobby: Hobbies
+    let city: String
+    let company: String
     let photo: String
-}
-
-enum Sex: String {
-    case male = "Мужской"
-    case female = "Женский"
-}
-
-enum Hobbies: String {
-    case painting = "Рисование"
-    case sports = "Заниматься спортом"
-    case handcrafting = "Делать что-то своими руками"
-    case singing = "Петь"
-    case playMusicInstruments = "Играть на музыкальных инструментах"
-}
-
-//enum Sport: String {
-//    case running = "Бегать"
-//    case sailing = "Парусным спортом"
-//    case swimming = "Плаванием"
-//    case bodybuilding = "Бодибилдингом"
-//    case fitness = "Фитнесом"
-//}
-//enum Instuments: String {
-//    case guitar = "Играть на гитаре"
-//    case piano = "Играть на пианино"
-//}
+    let description: String
+    
+    static func createPerson() -> Person {
+            Person(name: "Aleksander",
+                                surname: "Kretov",
+                                age: 33,
+                                city: "Chelyabinsk",
+                                company: "PJC Fortum",
+                                photo: "me",
+                                description: "Hello! My name is Aleksander, as You can easily guess 😄 . I'am 33 years old man from severe city Chelyabinsk. I work for a huge enery company as Power Plant Unit Operator for 13 years. As for the hobbies: i like to play electric guitar for a long winters evenings 🤟🏼, and at the summer we are sailing with my friends. But right now, I don't have any free time 🤣 Couple of months ago I decided that I want to change something in my life. About 15 years ago I was very interested in programming, so good friend of mine, told me to learn Swift. So here I'am 😅 I will do my best.")
+    }
 }

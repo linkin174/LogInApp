@@ -11,12 +11,11 @@ class WelcomeViewController: UIViewController {
   
     // MARK: IBOutlets
     
-    @IBOutlet weak var logout: UIButton!
     @IBOutlet var greetingsLabel: UILabel!
     
     // MARK: Public Properties
 
-    var username: String!
+    var personName: String!
 
     // MARK: Life Cycle
 
@@ -24,10 +23,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         
         view.setGradientBackGround(colors: [UIColor.systemMint, UIColor.blue])
-        greetingsLabel.text! += " " + username + "!"
-    }
-    @IBAction func logout(_ sender: Any) {
-        dismiss(animated: true)
+        greetingsLabel.text! += " " + personName + "!"
     }
 }
 
