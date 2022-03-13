@@ -10,17 +10,17 @@ import UIKit
 class AboutPersonViewController: UIViewController {
     // MARK: IBOutlets
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var surnameLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var companyLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var surnameLabel: UILabel!
+    @IBOutlet var ageLabel: UILabel!
+    @IBOutlet var cityLabel: UILabel!
+    @IBOutlet var companyLabel: UILabel!
     
     // MARK: Public Properties
     
     var user: User!
     
-    //MARK: Life Cycle
+    // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +31,10 @@ class AboutPersonViewController: UIViewController {
         companyLabel.text = user.person.company
     }
     
-    //MARK: Navigation
+    // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let moreInfoVC = segue.destination as! MoreInfoViewController
         moreInfoVC.user = user
-       }
     }
-
-
-
+}

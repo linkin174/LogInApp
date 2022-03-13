@@ -8,17 +8,17 @@
 import UIKit
 
 class MoreInfoViewController: UIViewController {
-    //MARK: IBOutets
-    
+    // MARK: IBOutets
+
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var personImage: UIImageView!
-    
-    //MARK: Public Properties
-    
+
+    // MARK: Public Properties
+
     var user: User!
-    
-    //MARK: Life Cycle
-    
+
+    // MARK: Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
