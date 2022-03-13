@@ -253,6 +253,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Person Info" largeTitleDisplayMode="always" id="b7y-bw-tof">
                         <barButtonItem key="rightBarButtonItem" title="More" id="ier-Nq-K0R">
+                            <imageReference key="image" image="chevron.forward.2" catalog="system" symbolScale="large"/>
                             <connections>
                                 <segue destination="a5P-gr-7Fd" kind="show" identifier="toMoreInfoView" id="jJn-yS-jGf"/>
                             </connections>
@@ -350,7 +351,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Ulm-eF-fiC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <navigationBarAppearance key="standardAppearance"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <navigationBarAppearance key="standardAppearance" backgroundEffect="regular">
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -363,6 +367,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.forward.2" catalog="system" width="128" height="105"/>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <namedColor name="AccentColor">

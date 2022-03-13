@@ -24,6 +24,7 @@ class AboutPersonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.setGradientBackground(UIColor(named: "firstGradientColor")!, UIColor(named: "secondGradientColor")!)
         nameLabel.text = user.person.name
         surnameLabel.text = user.person.surname
         ageLabel.text = String(user.person.age)

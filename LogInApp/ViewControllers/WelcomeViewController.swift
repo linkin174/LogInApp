@@ -21,7 +21,9 @@ class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        greetingsLabel.text! += " " + user.person.name + " " + user.person.surname + "!"
+        view.setGradientBackground(UIColor(named: "firstGradientColor")!, UIColor(named: "secondGradientColor")!)
+        greetingsLabel.text = "Hello, \(user.person.name) \(user.person.surname)!"
+        
     }
 }
 

@@ -16,28 +16,51 @@ class LogInViewController: UIViewController {
     // MARK: Private properties
 
     private let user = User.createUser()
-
+    private let person = User.createUser()
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameTF.delegate = self
         passwordTF.delegate = self
+        view.setGradientBackground(UIColor(named: "firstGradientColor")!, UIColor(named: "secondGradientColor")!)
     }
 
     // MARK: Navigation
-
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard segue.destination as? UITabBarController == nil else {
+//            let tabBarController = segue.destination as! UITabBarController
+//            guard tabBarController.viewControllers == nil else {
+//                for viewController in tabBarController.viewControllers! {
+//                    if let welcomeVC = viewController as? WelcomeViewController {
+//                        welcomeVC.user = user
+//                    } else if let navigationVC  = viewController as? UINavigationController {
+//                        let aboutVC = navigationVC.topViewController as? AboutPersonViewController
+//                        aboutVC?.user = user
+//                    }
+//                }
+//                return
+//            }
+//            return
+//        }
+//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let tabBarController = segue.destination as! UITabBarController
-        for viewController in tabBarController.viewControllers! {
+        guard let tabBarController = segue.destination as? UITabBarController,
+        let viewControllers = tabBarController.viewControllers else { return }
+        
+        for viewController in viewControllers {
             if let welcomeVC = viewController as? WelcomeViewController {
                 welcomeVC.user = user
-            } else if let navigationVC = viewController as? UINavigationController {
-                let aboutVC = navigationVC.topViewController as! AboutPersonViewController
-                aboutVC.user = user
+            } else if let navigationController = viewController as? UINavigationController {
+                let aboutVC = navigationController.topViewController as? AboutPersonViewController
+                aboutVC?.user = user
             }
         }
     }
+
+
 
     // MARK: IBActions
 
@@ -93,5 +116,14 @@ extension LogInViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
+    }
+}
+
+extension UIView {
+    func setGradientBackground(_ firstColor: UIColor, _ secondColor: UIColor) {
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.colors = [firstColor.cgColor, secondColor.cgColor]
+        layer.insertSublayer(gradient, at: 0)
     }
 }

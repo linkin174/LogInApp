@@ -17,11 +17,12 @@ class MoreInfoViewController: UIViewController {
     // MARK: Public Properties
 
     var user: User!
-
+    
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.setGradientBackground(UIColor(named: "firstGradientColor")!, UIColor(named: "secondGradientColor")!)
         
         if UIScreen.main.bounds.maxY <= 568 {
             descriptionLabel.font = .systemFont(ofSize: 14)
