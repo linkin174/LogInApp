@@ -8,6 +8,7 @@
 import UIKit
 
 class AboutPersonViewController: UIViewController {
+    // MARK: IBOutlets
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var surnameLabel: UILabel!
@@ -15,7 +16,11 @@ class AboutPersonViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     
+    // MARK: Public Properties
+    
     var user: User!
+    
+    //MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +29,9 @@ class AboutPersonViewController: UIViewController {
         ageLabel.text = String(user.person.age)
         cityLabel.text = user.person.city
         companyLabel.text = user.person.company
-        
     }
+    
+    //MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let moreInfoVC = segue.destination as! MoreInfoViewController

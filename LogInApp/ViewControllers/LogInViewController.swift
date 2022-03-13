@@ -14,18 +14,16 @@ class LogInViewController: UIViewController {
     @IBOutlet var passwordTF: UITextField!
 
     // MARK: Private properties
+
     private let user = User.createUser()
-    
+
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    
         userNameTF.delegate = self
         passwordTF.delegate = self
     }
-
 
     // MARK: Navigation
 
@@ -39,49 +37,37 @@ class LogInViewController: UIViewController {
                 aboutVC.user = user
             }
         }
-}
+    }
 
     // MARK: IBActions
 
     @IBAction func reminderButtonsPressed(_ sender: UIButton) {
         sender.tag == 0
             ? showAlert(title: "Your user name is",
-                        message: "\(self.user.login)",
+                        message: "\(user.login)",
                         actionTitle: "Understand")
             : showAlert(title: "Your password is",
-                        message: "\(self.user.password)",
+                        message: "\(user.password)",
                         actionTitle: "Cool")
     }
 
     @IBAction func logInButtonPressed() {
-        if userNameTF.text == user.login && passwordTF.text == user.password{
-                performSegue(withIdentifier: "toWelcomeScreen", sender: UIButton.self)
-            } else {
-                showAlert(title: "ERROR",
-                          message: "Wrong user name or password",
-                          actionTitle: "Что ж")
-                
-            }
+        if userNameTF.text == user.login, passwordTF.text == user.password {
+            performSegue(withIdentifier: "toWelcomeScreen", sender: UIButton.self)
+        } else {
+            showAlert(title: "ERROR",
+                      message: "Wrong user name or password",
+                      actionTitle: "Что ж")
         }
-    
+    }
+
     @IBAction func unwind(segue: UIStoryboardSegue) {
         userNameTF.text?.removeAll()
         passwordTF.text?.removeAll()
     }
 }
 
-
-
 // MARK: Extensions
-
-extension UIView {
-    func setGradientBackGround(colors: [UIColor]) {
-        let gradient = CAGradientLayer()
-        gradient.frame = bounds
-        gradient.colors = colors.map { $0.cgColor }
-        layer.insertSublayer(gradient, at: 0)
-    }
-}
 
 extension LogInViewController {
     private func showAlert(title: String, message: String, actionTitle: String) {
@@ -96,8 +82,8 @@ extension LogInViewController {
 
 extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == userNameTF { // Проверка какое поле выбрано
-            passwordTF.becomeFirstResponder() // Выбор следующего поля
+        if textField == userNameTF {
+            passwordTF.becomeFirstResponder()
         } else {
             logInButtonPressed()
         }
@@ -109,4 +95,3 @@ extension LogInViewController: UITextFieldDelegate {
         view.endEditing(true)
     }
 }
-

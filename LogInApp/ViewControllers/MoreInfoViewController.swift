@@ -8,25 +8,27 @@
 import UIKit
 
 class MoreInfoViewController: UIViewController {
+    //MARK: IBOutets
     
-    var photo: String!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var personImage: UIImageView!
     
-    @IBOutlet weak var personImage: UIImageView!
+    //MARK: Public Properties
+    
+    var user: User!
+    
+    //MARK: Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        personImage.image = UIImage(named: photo)
-        // Do any additional setup after loading the view.
+
+        if UIScreen.main.bounds.maxY <= 568 {
+            descriptionLabel.font = .systemFont(ofSize: 14)
+        }
+
+        personImage?.image = UIImage(named: user.person.photo)
+        personImage?.layer.cornerRadius = 20
+
+        descriptionLabel.text = user.person.description
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
