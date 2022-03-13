@@ -6,7 +6,6 @@
 //
 
 import UIKit
-@IBDesignable
 class PaddingLabel: UILabel {
     override func drawText(in rect: CGRect) {
         let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -32,7 +31,6 @@ class MoreInfoViewController: UIViewController {
         imageTopConstraint.constant = -40
         descriptionLabel.backgroundColor = .white.withAlphaComponent(0.4)
         descriptionLabel.layer.cornerRadius = 20
-        
         view.setGradientBackground(UIColor(named: "firstGradientColor")!, UIColor(named: "secondGradientColor")!)
         let screenSizeY = UIScreen.main.bounds.maxY
         if  screenSizeY <= 568 {
