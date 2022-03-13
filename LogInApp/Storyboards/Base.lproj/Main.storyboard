@@ -108,7 +108,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="3UT-h3-a4u">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="3UT-h3-a4u">
                                 <rect key="frame" x="16" y="126" width="288" height="316"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" minimumScaleFactor="0.5" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mV9-Np-ftw">
@@ -140,10 +140,9 @@
                         <viewLayoutGuide key="safeArea" id="exu-cF-FfE"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstItem="3UT-h3-a4u" firstAttribute="centerY" secondItem="U0x-wh-Tbf" secondAttribute="centerY" id="EYZ-Xm-uEJ"/>
-                            <constraint firstItem="3UT-h3-a4u" firstAttribute="leading" secondItem="exu-cF-FfE" secondAttribute="leading" constant="16" id="dTW-eb-m58"/>
-                            <constraint firstItem="exu-cF-FfE" firstAttribute="trailing" secondItem="3UT-h3-a4u" secondAttribute="trailing" constant="16" id="qWc-ty-oDM"/>
-                            <constraint firstItem="3UT-h3-a4u" firstAttribute="top" secondItem="exu-cF-FfE" secondAttribute="top" constant="40" id="r1c-TJ-aYH"/>
+                            <constraint firstItem="3UT-h3-a4u" firstAttribute="centerY" secondItem="U0x-wh-Tbf" secondAttribute="centerY" id="BXj-nQ-ZEd"/>
+                            <constraint firstItem="3UT-h3-a4u" firstAttribute="leading" secondItem="exu-cF-FfE" secondAttribute="leading" constant="16" id="GXP-tD-JbQ"/>
+                            <constraint firstItem="exu-cF-FfE" firstAttribute="trailing" secondItem="3UT-h3-a4u" secondAttribute="trailing" constant="16" id="cRJ-Ke-b7j"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="hOx-EU-ZSl">
