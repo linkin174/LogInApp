@@ -13,6 +13,7 @@ class MoreInfoViewController: UIViewController {
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var personImage: UIImageView!
 
+    
     // MARK: Public Properties
 
     var user: User!
@@ -21,7 +22,7 @@ class MoreInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if UIScreen.main.bounds.maxY <= 568 {
             descriptionLabel.font = .systemFont(ofSize: 14)
         }
