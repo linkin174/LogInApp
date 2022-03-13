@@ -23,7 +23,6 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         view.setGradientBackground(UIColor(named: "firstGradientColor")!, UIColor(named: "secondGradientColor")!)
         greetingsLabel.text = "Hello, \(user.person.name) \(user.person.surname)!"
-        
     }
 }
 

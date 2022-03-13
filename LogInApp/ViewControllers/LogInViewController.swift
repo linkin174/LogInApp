@@ -6,26 +6,38 @@
 //
 
 import UIKit
-
+    
 class LogInViewController: UIViewController {
     // MARK: IB Outlets
 
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
-
+    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var reminderButtons: [UIButton]!
+    
     // MARK: Private properties
 
     private let user = User.createUser()
-    private let person = User.createUser()
+    
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if UIScreen.main.bounds.maxY <= 568 {
+            for button in reminderButtons {
+                button.titleLabel?.font = .systemFont(ofSize: 14)
+            }
+        } else {
+            self.stackViewTopConstraint.constant = UIScreen.main.bounds.maxY / 4
+            
+        }
         userNameTF.delegate = self
         passwordTF.delegate = self
         view.setGradientBackground(UIColor(named: "firstGradientColor")!, UIColor(named: "secondGradientColor")!)
     }
 
+    
     // MARK: Navigation
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,6 +65,7 @@ class LogInViewController: UIViewController {
         for viewController in viewControllers {
             if let welcomeVC = viewController as? WelcomeViewController {
                 welcomeVC.user = user
+                tabBarController.tabBar.layer.cornerRadius = 16
             } else if let navigationController = viewController as? UINavigationController {
                 let aboutVC = navigationController.topViewController as? AboutPersonViewController
                 aboutVC?.user = user
