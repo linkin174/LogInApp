@@ -24,13 +24,12 @@ class AboutPersonViewController: UIViewController {
         ageLabel.text = String(user.person.age)
         cityLabel.text = user.person.city
         companyLabel.text = user.person.company
-        view.setGradientBackGround(colors: [UIColor.systemMint, UIColor.blue])
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let moreInfoVC = segue.destination as! MoreInfoViewController
-        moreInfoVC.aboutPerson = self.user.person.description
-        moreInfoVC.photo = self.user.person.photo
+        moreInfoVC.user = user
        }
     }
 

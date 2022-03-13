@@ -16,14 +16,14 @@ class WelcomeViewController: UIViewController {
     // MARK: Public Properties
 
     var personName: String!
-
+    var user: User!
+    
     // MARK: Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.setGradientBackGround(colors: [UIColor.systemMint, UIColor.blue])
-        greetingsLabel.text! += " " + personName + "!"
+        greetingsLabel.text! += " " + user.person.name + " " + user.person.surname + "!"
     }
 }
 

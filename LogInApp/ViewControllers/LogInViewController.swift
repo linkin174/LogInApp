@@ -21,7 +21,7 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.setGradientBackGround(colors: [UIColor.gray, UIColor.white])
+    
         userNameTF.delegate = self
         passwordTF.delegate = self
     }
@@ -33,7 +33,7 @@ class LogInViewController: UIViewController {
         let tabBarController = segue.destination as! UITabBarController
         for viewController in tabBarController.viewControllers! {
             if let welcomeVC = viewController as? WelcomeViewController {
-                welcomeVC.personName = user.person.name
+                welcomeVC.user = user
             } else if let navigationVC = viewController as? UINavigationController {
                 let aboutVC = navigationVC.topViewController as! AboutPersonViewController
                 aboutVC.user = user
